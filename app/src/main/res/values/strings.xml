@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">AndroidShoppingApp</string>
-
-
+    <string name="default_web_client_id">926286109400-97uvhtdjugd0no9im8e4fvg91k1ufav0.apps.googleusercontent.com</string>
 </resources>

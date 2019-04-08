@@ -13,7 +13,16 @@
           "package_name": "com.ilyas.androidshoppingapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "926286109400-as1h9u903r6rgvop1m7u9q3u8g2e3fcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ilyas.androidshoppingapp",
+            "certificate_hash": "f8cd2e946e68ff27606ee258379619edd1b64e10"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDJSNjKCLp60GXswobUVvDhTysB5t63YzA"
