@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -44,18 +45,21 @@ public class SignupActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(eml)){
                     msg = "Email Can't be Empty";
                     Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+                    email.setError(msg);
                     return;
                 }
 
                 if(TextUtils.isEmpty(pwd)){
                     msg = "Password Can't be Empty";
                     Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+                    password.setError(msg);
                     return;
                 }
 
                 if(pwd.length() < 6){
                     msg = "Password Must be Longer than 6 Character";
                     Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    password.setError(msg);
                     return;
                 }
 
@@ -66,7 +70,8 @@ public class SignupActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }else{
-                            Toast.makeText(getApplicationContext(), "Email or Password Incorrect", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Email or Password Incorrect", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(findViewById(R.id.ConstraintLayout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -76,7 +81,7 @@ public class SignupActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                //startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
             }
         });

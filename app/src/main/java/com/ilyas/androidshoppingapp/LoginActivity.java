@@ -1,4 +1,5 @@
 package com.ilyas.androidshoppingapp;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,6 +29,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,11 +76,13 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
 
                 if(TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(),"Email Cannot be Empty", Toast.LENGTH_SHORT).show();
+                    loginEmail.setError("Email Cannot be Empty");
                     return;
                 }
 
                 if(TextUtils.isEmpty(pwd)) {
                     Toast.makeText(getApplicationContext(),"Password Cannot be Empty", Toast.LENGTH_SHORT).show();
+                    loginPassword.setError("Password Cannot be Empty");
                     return;
                 }
 
@@ -94,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
                                     if(pwd.length() < 6) {
                                        loginPassword.setError("Password Must be of minimum 6 characters");
                                     }else {
-                                        Toast.makeText(getApplicationContext(),"Authentication Failed Check Your Email and Password", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),"Authentication Failed Check Your Email and Password or Internet Connection", Toast.LENGTH_SHORT).show();
                                     }
                                 }else {
                                     Intent mIntent = new Intent(LoginActivity.this, MainActivity.class);
@@ -126,6 +132,16 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
+    }
+
+    public boolean isInternetAvailable(Context context) {
+        try {
+            final InetAddress add = InetAddress.getByName("www.google.com");
+            return !add.equals("");
+        }catch (UnknownHostException e){
+            //Error
+        }
+        return false;
     }
 
 

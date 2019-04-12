@@ -3,6 +3,7 @@ package com.ilyas.androidshoppingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         final FirebaseUser user  = firebaseAuth.getCurrentUser();
-        txtUser.setText("Hi " + user.getDisplayName());
+        txtUser.setText("Hi " + user.getEmail());
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
