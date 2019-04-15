@@ -2,9 +2,12 @@ package com.ilyas.androidshoppingapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +16,9 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+import org.jetbrains.annotations.NotNull;
+
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener {
 
 
     TextView txtUser;
@@ -57,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        final NavController nav = Navigation.findNavController(MainActivity.this, R.id.nav_host);
+        return nav.navigateUp();
+//        return super.onSupportNavigateUp();
+
     }
 
     protected void onStart() {
@@ -71,4 +85,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onFragmentInteraction(@NotNull Uri uri) {
+
+    }
 }
