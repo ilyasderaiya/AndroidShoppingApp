@@ -11,6 +11,14 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.ilyas.androidshoppingapp.model.Customer;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +53,30 @@ public class MainActivity extends AppCompatActivity {
 
         final FirebaseUser user  = firebaseAuth.getCurrentUser();
         txtUser.setText("Hi " + user.getDisplayName());
+        ///Setting Customer////////////////////////
+        ///////////////////////////////////////////
+        Customer customer=new Customer();
+        //customer.setCustomerName(user.getDisplayName());
+        customer.setCustomerName("Test1");
+        customer.setEmail(user.getEmail());
+        customer.setCreditCardInfo("creditinfo1");
+        customer.setShippingInfo("shippinginfo1");
+        customer.dispInfo();
+        Customer customer2=new Customer();
+        customer.setCustomerName("Test2");
+        customer.setEmail("cust2@gmail.com");
+        customer.setCreditCardInfo("creditinfo2");
+        customer.setShippingInfo("shippinginfo2");
+        //////////////////////////////////////////////
+        FirebaseDatabase mFirebaseInstance= FirebaseDatabase.getInstance();
+        DatabaseReference mRef=mFirebaseInstance.getReference("Customer");
+        String cid=mRef.push().getKey();
+        mRef.child(cid).setValue(customer);
+        mRef.child(user.getUid()).setValue(customer2);
+        //DatabaseReference mRef=mDatabase.getReference();
+        //mRef.setValue(customer);
+        //mFirebaseInstance.getReference("Customer").setValue(customer2);
+                //getInstance.getReference("Customer");
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
