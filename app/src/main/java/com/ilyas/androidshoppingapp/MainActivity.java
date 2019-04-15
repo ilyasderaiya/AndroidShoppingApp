@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ilyas.androidshoppingapp.model.Customer;
+import com.ilyas.androidshoppingapp.model.Products;
 
 import java.util.ArrayList;
 
@@ -70,13 +71,10 @@ public class MainActivity extends AppCompatActivity {
         //////////////////////////////////////////////
         FirebaseDatabase mFirebaseInstance= FirebaseDatabase.getInstance();
         DatabaseReference mRef=mFirebaseInstance.getReference("Customer");
+        mRef.child(user.getUid()).setValue(customer);
+        mRef=mFirebaseInstance.getReference("Products");
         String cid=mRef.push().getKey();
-        mRef.child(cid).setValue(customer);
-        mRef.child(user.getUid()).setValue(customer2);
-        //DatabaseReference mRef=mDatabase.getReference();
-        //mRef.setValue(customer);
-        //mFirebaseInstance.getReference("Customer").setValue(customer2);
-                //getInstance.getReference("Customer");
+        mRef.child(cid).setValue(new Products(1,"Iphone X 64GB Black",649.99f,50,"https://e-mac.eu/image/cache/Apple-iPhone-XS-Max-6.5-inch-64GB-Gold-MT522ZD:A_front-500x500.png"));
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
