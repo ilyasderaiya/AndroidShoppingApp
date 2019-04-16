@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity" />
-
+        <activity android:name=".ProductDetailsActivity"/>
         <activity android:name=".SignupActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>

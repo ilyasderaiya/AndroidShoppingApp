@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     TextView txtUser;
     Button btnLogout;
+    Button btnNext;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
         txtUser =  (TextView) findViewById(R.id.txtDetails);
         btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnNext = (Button) findViewById(R.id.btnTempNext);
 
         firebaseAuth =FirebaseAuth.getInstance();
 
@@ -62,6 +64,15 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                 finish();
             }
         });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ProductDetailsActivity.class));
+                finish();
+            }
+        });
+
         onSupportNavigateUp();
     }
 
