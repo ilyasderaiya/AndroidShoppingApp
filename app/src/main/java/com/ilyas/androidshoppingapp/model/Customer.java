@@ -13,12 +13,18 @@ public class Customer {
     //Scanner sc = new Scanner(System.in);
     private List<ShoppingCart> arrCart;//=new ArrayList<ShoppingCart>();
     private List<Orders> arrOrd;//=new ArrayList<Orders>();
-
-    public Customer(){
-
+    private static Customer customer=null;
+    private Customer(){
+        this.customerName = new String();
+        this.address = new String();
+        this.email = new String();
+        this.creditCardInfo = new String();
+        this.shippingInfo = new String();
+        this.arrCart = new ArrayList<ShoppingCart>();
+        this.arrOrd = new ArrayList<Orders>();
     }
 
-    public Customer(String customerName, String address, String email, String creditCardInfo, String shippingInfo, ArrayList<ShoppingCart> arrCart, ArrayList<Orders> arrOrd) {
+    private Customer(String customerName, String address, String email, String creditCardInfo, String shippingInfo, ArrayList<ShoppingCart> arrCart, ArrayList<Orders> arrOrd) {
         this.customerName = customerName;
         this.address = address;
         this.email = email;
@@ -26,6 +32,12 @@ public class Customer {
         this.shippingInfo = shippingInfo;
         this.arrCart = arrCart;
         this.arrOrd = arrOrd;
+    }
+    public static Customer getInstance(){
+        if(customer==null){
+            customer=new Customer();
+        }
+        return customer;
     }
 
     public String getCustomerName() {

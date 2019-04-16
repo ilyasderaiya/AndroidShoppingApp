@@ -3,7 +3,7 @@ package com.ilyas.androidshoppingapp.model;
 public class Products {
     private int productID;
     private String productName;
-    private float productPrice;
+    private double productPrice;
     private int quantity;
     private String imageUrl;
 
@@ -35,11 +35,11 @@ public class Products {
         this.productName = productName;
     }
 
-    public float getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(float productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 
