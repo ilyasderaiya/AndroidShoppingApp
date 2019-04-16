@@ -31,8 +31,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     if (firebaseAuth.getCurrentUser() != null) {
-                        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
-                        finish();
+                        if(firebaseAuth.getCurrentUser().getEmail().equals("admin@admin.com")){
+                            startActivity(new Intent(SplashScreenActivity.this,AdminActivity.class));
+                            finish();
+                        }else {
+                            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                            finish();
+                        }
                     } else {
                         Intent loginIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(loginIntent);

@@ -1,4 +1,5 @@
 package com.ilyas.androidshoppingapp;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
     FirebaseAuth firebaseAuth;
     GoogleApiClient googleApiClient;
     GoogleSignInClient mGoogleSignInClient;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,10 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
         loginPassword = (EditText) findViewById(R.id.edtPassword);
         loginBtn = (Button) findViewById(R.id.btnLogin);
         registerBtn = (Button) findViewById(R.id.btnRegister);
-        final ProgressBar prgBar = (ProgressBar) findViewById(R.id.progressBar);
+//        final ProgressBar prgBar = (ProgressBar) findViewById(R.id.progressBar);
         signInButton = (SignInButton) findViewById(R.id.googleSignin);
+
+//        prgBar.setVisibility(View.VISIBLE);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -85,16 +89,22 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
                     loginPassword.setError("Password Cannot be Empty");
                     return;
                 }
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setMessage("Login in..."); // Setting Message
+                progressDialog.setTitle("Please Wait"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
+//                prgBar.setVisibility(View.VISIBLE);
 
-                prgBar.setVisibility(View.VISIBLE);
 
                 //Authenticate User
                 firebaseAuth.signInWithEmailAndPassword(email,pwd)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                prgBar.setVisibility(View.GONE);
-
+//                                prgBar.setVisibility(View.GONE);
+                                progressDialog.dismiss();
                                 if(!task.isSuccessful()) {
 
                                     if(pwd.length() < 6) {
@@ -103,9 +113,15 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
                                         Toast.makeText(getApplicationContext(),"Authentication Failed Check Your Email and Password or Internet Connection", Toast.LENGTH_SHORT).show();
                                     }
                                 }else {
-                                    Intent mIntent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(mIntent);
-                                    finish();
+                                    System.out.println(firebaseAuth.getCurrentUser().getEmail());
+                                    if(firebaseAuth.getCurrentUser().getEmail().equals("admin@admin.com")){
+                                        startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+                                        finish();
+                                    }else {
+                                        Intent mIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(mIntent);
+                                        finish();
+                                    }
                                 }
                             }
                         });

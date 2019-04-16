@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         btnLogout = (Button) findViewById(R.id.btnLogout);*/
         btnNext = (Button) findViewById(R.id.btnTempNext);
 
-        firebaseAuth =FirebaseAuth.getInstance();
+//        firebaseAuth =FirebaseAuth.getInstance();
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
+        /*authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                 finish();
             }
-        });
+        });*/
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
     }
 
-    protected void onStart() {
+    /*protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         if(authStateListener!=null){
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
-    }
+    }*/
 
     @Override
     public void onFragmentInteraction(@NotNull Uri uri) {

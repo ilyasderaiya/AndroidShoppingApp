@@ -3,6 +3,7 @@ package com.ilyas.androidshoppingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText email, password;
     Button registerBtn,cancelBtn;
     FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class SignupActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.edtPassword);
         registerBtn = (Button) findViewById(R.id.btnRegister);
         cancelBtn = (Button) findViewById(R.id.btnCancel);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -62,11 +65,18 @@ public class SignupActivity extends AppCompatActivity {
                     password.setError(msg);
                     return;
                 }
+                progressDialog = new ProgressDialog(SignupActivity.this);
+                progressDialog.setMessage("Registering..."); // Setting Message
+                progressDialog.setTitle("Please Wait"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
 
                 firebaseAuth.createUserWithEmailAndPassword(eml, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            progressDialog.dismiss();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }else{
