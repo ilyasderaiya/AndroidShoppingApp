@@ -24,37 +24,6 @@
         app:navGraph="@navigation/nav_graph" />
 
     <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/teal_300"
-        android:text="Logout"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDetails" />
-
-    <TextView
-        android:id="@+id/txtDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/btnTempNext"
         android:layout_width="86dp"
         android:layout_height="wrap_content"

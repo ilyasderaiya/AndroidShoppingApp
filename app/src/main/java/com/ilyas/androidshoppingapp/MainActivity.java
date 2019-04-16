@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtUser =  (TextView) findViewById(R.id.txtDetails);
-        btnLogout = (Button) findViewById(R.id.btnLogout);
+        /*txtUser =  (TextView) findViewById(R.id.txtDetails);
+        btnLogout = (Button) findViewById(R.id.btnLogout);*/
         btnNext = (Button) findViewById(R.id.btnTempNext);
 
         firebaseAuth =FirebaseAuth.getInstance();
