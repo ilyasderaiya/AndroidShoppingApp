@@ -37,6 +37,8 @@ public class CartActivity extends AppCompatActivity {
     Button btnShippingInfo;
     TextView totalPrice;
 
+    String prodName, prodPrice, prodQty, prodImgUrl;
+
     FirebaseAuth mAuth;
     FirebaseUser fuser;
 
@@ -67,6 +69,10 @@ public class CartActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(CartActivity.this, ShippingInfoActivity.class);
                 intent.putExtra("Total Price", String.valueOf(orderTotal));
+                intent.putExtra("pname", prodName);
+                intent.putExtra("pprice", prodPrice);
+                intent.putExtra("quantity", prodQty);
+                intent.putExtra("image", prodImgUrl);
                 startActivity(intent);
                 finish();
             }
@@ -94,6 +100,11 @@ public class CartActivity extends AppCompatActivity {
                         cartViewHolder.txtProductQty.setText("Quantity:" + cart.getQuantity());
                         Picasso.get().load(cart.getImage()).into(cartViewHolder.imgProductImage);
 
+                        prodName = cart.getPname();
+                        prodPrice = cart.getPprice();
+                        prodQty = cart.getQuantity();
+                        prodImgUrl = cart.getImage();
+
                         Float oneProductPrice = ( (Float.valueOf(cart.getPprice())) * Float.valueOf(cart.getQuantity()));
                         orderTotal += oneProductPrice;
 
@@ -105,7 +116,7 @@ public class CartActivity extends AppCompatActivity {
                                 CharSequence options[] = new CharSequence[]
                                         {
                                                 "Edit",
-                                                "Remove"
+                                                "Delete"
                                         };
                                 AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
                                 builder.setTitle("Cart Options:");
@@ -130,7 +141,7 @@ public class CartActivity extends AppCompatActivity {
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if(task.isSuccessful())
                                                             {
-                                                                Toast.makeText(CartActivity.this, "Item Removed", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(CartActivity.this, "Item Deleted from Cart", Toast.LENGTH_SHORT).show();
 //                                                                startActivity(new Intent(CartActivity.this, HomeActivity.class));
                                                             }
                                                         }
