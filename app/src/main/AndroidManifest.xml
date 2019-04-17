@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
-        <activity android:name=".UI.CartActivity"></activity>
+        <activity android:name=".UI.ShippingInfoActivity"></activity>
+        <activity android:name=".UI.CartActivity" />
         <activity android:name=".UI.ProductInfoAvtivity" />
         <activity android:name=".UI.ProfileActivity" />
         <activity
