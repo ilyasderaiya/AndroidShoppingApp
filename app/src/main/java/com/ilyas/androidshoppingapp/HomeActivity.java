@@ -1,5 +1,6 @@
 package com.ilyas.androidshoppingapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -122,11 +123,21 @@ public class HomeActivity extends AppCompatActivity
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @SuppressLint("SetTextI18n")
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Products products) {
+                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products products) {
                         productViewHolder.txtPName.setText(products.getProductName());
                         productViewHolder.txtPPrice.setText("$" + products.getProductPrice());
                         Picasso.get().load(products.getImageUrl()).into(productViewHolder.pImageView);
+
+                        productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(HomeActivity.this,ProductInfoAvtivity.class);
+                                intent.putExtra("key", products.getKey());
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @NonNull
