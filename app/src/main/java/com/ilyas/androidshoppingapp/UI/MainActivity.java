@@ -1,6 +1,5 @@
-package com.ilyas.androidshoppingapp;
+package com.ilyas.androidshoppingapp.UI;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.ilyas.androidshoppingapp.R;
 
 import org.jetbrains.annotations.NotNull;
 

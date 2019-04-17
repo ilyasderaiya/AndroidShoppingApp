@@ -1,4 +1,4 @@
-package com.ilyas.androidshoppingapp;
+package com.ilyas.androidshoppingapp.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
+import com.ilyas.androidshoppingapp.R;
 
 public class SignupActivity extends AppCompatActivity {
 

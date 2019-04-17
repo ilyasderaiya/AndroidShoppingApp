@@ -1,4 +1,4 @@
-package com.ilyas.androidshoppingapp;
+package com.ilyas.androidshoppingapp.UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ilyas.androidshoppingapp.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;

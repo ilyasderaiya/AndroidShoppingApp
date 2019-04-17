@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundwood"
     android:fitsSystemWindows="true"
-    tools:context=".SignupActivity">
+    tools:context=".UI.SignupActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"

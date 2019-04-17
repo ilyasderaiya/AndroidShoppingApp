@@ -1,4 +1,4 @@
-package com.ilyas.androidshoppingapp;
+package com.ilyas.androidshoppingapp.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ilyas.androidshoppingapp.R;
 import com.ilyas.androidshoppingapp.model.Products;
 import com.squareup.picasso.Picasso;
 
@@ -35,7 +36,7 @@ public class ProductInfoAvtivity extends AppCompatActivity {
     ElegantNumberButton numberButton;
     TextView productName, productPrice;
 
-    String pImageUrl;
+    String pImageUrl, pPrice;
 
     FirebaseAuth mAuth;
     FirebaseUser fuser;
@@ -85,7 +86,7 @@ public class ProductInfoAvtivity extends AppCompatActivity {
         final HashMap<String, Object> cartMap = new HashMap<>();
         cartMap.put("key",key);
         cartMap.put("pname",productName.getText().toString());
-        cartMap.put("pprice",productPrice.getText().toString());
+        cartMap.put("pprice",pPrice);
         cartMap.put("date",saveCurrDate);
         cartMap.put("time",saveCurrTime);
         cartMap.put("quantity", numberButton.getNumber());
@@ -99,7 +100,7 @@ public class ProductInfoAvtivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(ProductInfoAvtivity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(ProductInfoAvtivity.this, HomeActivity.class));
+//                            startActivity(new Intent(ProductInfoAvtivity.this, HomeActivity.class));
                             finish();
                         }
                     }
@@ -119,7 +120,8 @@ public class ProductInfoAvtivity extends AppCompatActivity {
 
                     if (products != null ) {
                         productName.setText(products.getProductName());
-                        productPrice.setText("Price: $" + products.getProductPrice());
+                        pPrice = products.getProductPrice();
+                        productPrice.setText("Price: $" + pPrice);
                         pImageUrl = products.getImageUrl();
                         Picasso.get().load(pImageUrl).into(productImage);
                     }

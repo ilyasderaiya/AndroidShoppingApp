@@ -1,4 +1,4 @@
-package com.ilyas.androidshoppingapp;
+package com.ilyas.androidshoppingapp.UI;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ilyas.androidshoppingapp.R;
 import com.ilyas.androidshoppingapp.ViewHolder.ProductViewHolder;
 import com.ilyas.androidshoppingapp.model.Products;
 import com.squareup.picasso.Picasso;
@@ -65,8 +66,9 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                startActivity(new Intent(HomeActivity.this, CartActivity.class));
             }
         });
 
@@ -193,6 +195,7 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_cart) {
             // Handle the camera action
+            startActivity(new Intent(HomeActivity.this, CartActivity.class));
         } else if (id == R.id.nav_orders) {
 
         } else if (id == R.id.nav_profile) {

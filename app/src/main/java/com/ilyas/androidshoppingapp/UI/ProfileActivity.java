@@ -1,4 +1,4 @@
-package com.ilyas.androidshoppingapp;
+package com.ilyas.androidshoppingapp.UI;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.ilyas.androidshoppingapp.R;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -110,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         ref.child(user.getUid()).updateChildren(userMap);
 
-        startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
+//        startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
         Toast.makeText(ProfileActivity.this, "Info Updated", Toast.LENGTH_SHORT).show();
         finish();
     }
