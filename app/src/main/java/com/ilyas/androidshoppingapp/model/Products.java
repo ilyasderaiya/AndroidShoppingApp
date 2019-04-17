@@ -6,19 +6,20 @@ public class Products {
     private String productName;
     private String productPrice;
     private String quantity;
+    private String key;
 
 
     public Products(){
 
     }
 
-    public Products(String imageUrl, String productID, String productName, String productPrice, String quantity) {
+    public Products(String imageUrl, String productID, String productName, String productPrice, String quantity, String key) {
         this.imageUrl = imageUrl;
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
         this.quantity = quantity;
-
+        this.key = key;
     }
 
     public String getImageUrl() {
@@ -61,5 +62,11 @@ public class Products {
         this.quantity = quantity;
     }
 
+    public String getKey() {
+        return key;
+    }
 
+    public void setKey(String key) {
+        this.key = key;
+    }
 }
