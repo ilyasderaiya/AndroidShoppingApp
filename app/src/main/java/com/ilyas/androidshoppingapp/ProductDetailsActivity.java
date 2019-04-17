@@ -43,10 +43,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
         txtProductName=findViewById(R.id.txtProductName);
         btnAdd=findViewById(R.id.btnAddCart);
         final FirebaseDatabase mFirebaseInstance= FirebaseDatabase.getInstance();
-        final DatabaseReference mRef=mFirebaseInstance.getReference("Products");
+//        final DatabaseReference mRef=mFirebaseInstance.getReference("Products");
 
 //        mRef.child("iphonedemo").setValue(new Products(1,"Iphone X 64GB Black",649.99f,50,"https://e-mac.eu/image/cache/Apple-iPhone-XS-Max-6.5-inch-64GB-Gold-MT522ZD:A_front-500x500.png"));
-        mRef.child("iphonedemo").addValueEventListener(new ValueEventListener() {
+       /* mRef.child("iphonedemo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //String mykey=dataSnapshot.getKey();
@@ -59,12 +59,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.w("---error---", "loadProduct:onCancelled", databaseError.toException());
             }
-        });
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        });*/
+
+
+        /*btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShoppingCart sc = new ShoppingCart();
-                sc.addCartItem(products.getProductID(),products.getQuantity(),products.getProductName(),products.getImageUrl(),products.getProductPrice());
+//                sc.addCartItem(products.getProductID(),products.getQuantity(),products.getProductName(),products.getImageUrl(),products.getProductPrice());
                 Customer c=Customer.getInstance();
                 ArrayList<ShoppingCart> sclist=(ArrayList<ShoppingCart>) c.getArrCart();
                 sclist.add(sc);
@@ -72,7 +74,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 mFirebaseInstance.getReference("Customer").child(user.getUid()).setValue(c);
                 txtProductName.setText("Add to cart for "+products.getProductName());
             }
-        });
+        });*/
         /*mRef.child("iphonedemo").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -106,7 +108,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         txtProductName.setText(p.getProductName());*/
     }
 
-    private Products loadContent(Products pObj) {
+    /*private Products loadContent(Products pObj) {
         if(pObj==null){
             System.out.println("Product is null");
         }
@@ -120,5 +122,5 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     .into(imgProd);
         }
         return pObj;
-    }
+    }*/
 }

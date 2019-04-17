@@ -1,29 +1,39 @@
 package com.ilyas.androidshoppingapp.model;
 
 public class Products {
-    private int productID;
-    private String productName;
-    private double productPrice;
-    private int quantity;
     private String imageUrl;
+    private String productID;
+    private String productName;
+    private String productPrice;
+    private String quantity;
+
 
     public Products(){
 
     }
 
-    public Products(int productID, String productName, float productPrice, int quantity, String imageUrl) {
+    public Products(String imageUrl, String productID, String productName, String productPrice, String quantity) {
+        this.imageUrl = imageUrl;
         this.productID = productID;
         this.productName = productName;
         this.productPrice = productPrice;
         this.quantity = quantity;
+
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public int getProductID() {
+    public String getProductID() {
         return productID;
     }
 
-    public void setProductID(int productID) {
+    public void setProductID(String productID) {
         this.productID = productID;
     }
 
@@ -35,27 +45,21 @@ public class Products {
         this.productName = productName;
     }
 
-    public double getProductPrice() {
+    public String getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(String productPrice) {
         this.productPrice = productPrice;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

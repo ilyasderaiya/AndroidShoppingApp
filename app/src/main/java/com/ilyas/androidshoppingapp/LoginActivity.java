@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
                                         startActivity(new Intent(LoginActivity.this,AdminActivity.class));
                                         finish();
                                     }else {
-                                        Intent mIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                        Intent mIntent = new Intent(LoginActivity.this, HomeActivity.class);
                                         startActivity(mIntent);
                                         finish();
                                     }
