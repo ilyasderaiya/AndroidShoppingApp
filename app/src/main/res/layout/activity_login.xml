@@ -30,7 +30,8 @@
             android:drawablePadding="8dp"
             android:hint="Email"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textColorHint="@android:color/background_light" />
+            android:textColorHint="@android:color/background_light"
+            android:textColorLink="#ffffff" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -55,7 +56,8 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:textColor="@android:color/background_light"
-            android:textColorHint="@android:color/background_light" />
+            android:textColorHint="@android:color/background_light"
+            android:textColorLink="#ffffff" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
