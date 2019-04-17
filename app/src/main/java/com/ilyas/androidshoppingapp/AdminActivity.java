@@ -185,6 +185,7 @@ public class AdminActivity extends AppCompatActivity {
         prodMap.put("productPrice", pPrice);
         prodMap.put("quantity", pQty);
         prodMap.put("imageUrl", downImageUrl);
+        prodMap.put("key", randomId);
 
         productRef.child(randomId).updateChildren(prodMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
