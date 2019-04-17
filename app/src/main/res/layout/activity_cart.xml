@@ -7,14 +7,14 @@
     tools:context=".UI.CartActivity">
 
     <Button
-        android:id="@+id/btn_checkout_cart"
+        android:id="@+id/btn_shipping_info_cart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/oval"
-        android:text="Checkout"
+        android:text="Shipping Info"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
         android:text="Total Price: "
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_checkout_cart"
+        app:layout_constraintBottom_toTopOf="@+id/btn_shipping_info_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
