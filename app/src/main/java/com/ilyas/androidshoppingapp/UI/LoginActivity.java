@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
                                 }else {
                                     System.out.println(firebaseAuth.getCurrentUser().getEmail());
                                     if(firebaseAuth.getCurrentUser().getEmail().equals("admin@admin.com")){
-                                        startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+                                        startActivity(new Intent(LoginActivity.this,AdminUiActivity.class));
                                         finish();
                                     }else {
                                         Intent mIntent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
         });
 
         if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);

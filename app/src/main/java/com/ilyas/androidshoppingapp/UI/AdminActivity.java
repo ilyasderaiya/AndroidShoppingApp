@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,7 +35,7 @@ import java.util.HashMap;
 
 public class AdminActivity extends AppCompatActivity {
 
-    Button btnlgot, btnAddProd;
+    Button  btnAddProd;
     EditText prodId, prodName, prodPrice, prodQty;
     ImageView prodImg;
 
@@ -57,7 +58,6 @@ public class AdminActivity extends AppCompatActivity {
         prodImageRef = FirebaseStorage.getInstance().getReference().child("product Images");
         productRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        btnlgot =  (Button) findViewById(R.id.btnlogout_admin);
         btnAddProd = (Button) findViewById(R.id.btnAddProd);
         prodId = (EditText) findViewById(R.id.edtPrdId);
         prodName = (EditText) findViewById(R.id.edtProdName);
@@ -86,14 +86,6 @@ public class AdminActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        btnlgot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(AdminActivity.this,LoginActivity.class));
-                finish();
-            }
-        });
     }
 
     private void ValidateProductData() {
@@ -117,6 +109,7 @@ public class AdminActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void storeProductInfo() {
 
         progressDialog.setMessage("please wait adding new product..."); // Setting Message
@@ -135,7 +128,7 @@ public class AdminActivity extends AppCompatActivity {
 
         randomId = saveCurrentDate + saveCurrentTime;
 
-        final StorageReference filePath = prodImageRef.child(imageUri.getLastPathSegment() + randomId + ".jpg");
+        final StorageReference filePath = prodImageRef.child(prodName + ".jpg");
 
         final UploadTask uploadTask = filePath.putFile(imageUri);
 
@@ -168,7 +161,7 @@ public class AdminActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             downImageUrl = task.getResult().toString();
 
-                            Toast.makeText(AdminActivity.this, "Product Image saved to Database", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminActivity.this, "Product Image saved to Storage", Toast.LENGTH_SHORT).show();
 
                             saveProductInfoToDatabase();
                         }
@@ -195,6 +188,7 @@ public class AdminActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             progressDialog.dismiss();
                             Toast.makeText(AdminActivity.this, "Product is Added Successfully", Toast.LENGTH_SHORT).show();
+                            finish();
                         }else{
                             progressDialog.dismiss();
                             Toast.makeText(AdminActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();

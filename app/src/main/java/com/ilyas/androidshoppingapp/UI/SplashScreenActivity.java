@@ -14,6 +14,7 @@ import android.os.Handler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.ilyas.androidshoppingapp.R;
 
+@SuppressWarnings("deprecation")
 public class SplashScreenActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Handler handler;
@@ -33,7 +34,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 public void run() {
                     if (firebaseAuth.getCurrentUser() != null) {
                         if(firebaseAuth.getCurrentUser().getEmail().equals("admin@admin.com")){
-                            startActivity(new Intent(SplashScreenActivity.this,AdminActivity.class));
+                            startActivity(new Intent(SplashScreenActivity.this,AdminUiActivity.class));
                             finish();
                         }else {
                             startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
