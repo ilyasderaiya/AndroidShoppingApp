@@ -1,11 +1,5 @@
 package com.ilyas.androidshoppingapp.UI;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,15 +14,24 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ilyas.androidshoppingapp.R;
 import com.ilyas.androidshoppingapp.ViewHolder.CartViewHolder;
 import com.ilyas.androidshoppingapp.model.Cart;
-import com.ilyas.androidshoppingapp.model.ShippingInfo;
 import com.squareup.picasso.Picasso;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -62,21 +65,48 @@ public class CartActivity extends AppCompatActivity {
         btnShippingInfo = (Button)findViewById(R.id.btn_shipping_info_cart);
         totalPrice = (TextView)findViewById(R.id.total_price_cart);
 
+       FirebaseDatabase.getInstance().getReference().child("Cart Item").addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               if(dataSnapshot.exists())
+               {
+                   btnShippingInfo.setVisibility(View.VISIBLE);
+               }
+               else
+               {
+                   Snackbar.make(findViewById(R.id.ConstraintLayout), "You Don't have anything in your Cart", Snackbar.LENGTH_SHORT).show();
+                   btnShippingInfo.setVisibility(View.GONE);
+
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+
+
         btnShippingInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(CartActivity.this, ShippingInfoActivity.class);
+                        Intent intent = new Intent(CartActivity.this, ShippingInfoActivity.class);
+                        intent.putExtra("Total Price", String.valueOf(orderTotal));
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                /*Intent intent = new Intent(CartActivity.this, ShippingInfoActivity.class);
                 intent.putExtra("Total Price", String.valueOf(orderTotal));
-                intent.putExtra("pname", prodName);
+                *//*intent.putExtra("pname", prodName);
                 intent.putExtra("pprice", prodPrice);
                 intent.putExtra("quantity", prodQty);
-                intent.putExtra("image", prodImgUrl);
+                intent.putExtra("image", prodImgUrl);*//*
                 startActivity(intent);
-                finish();
-            }
-        });
+                finish();*/
 
     }
 

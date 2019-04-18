@@ -1,6 +1,7 @@
 package com.ilyas.androidshoppingapp.UI;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,10 +14,15 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ilyas.androidshoppingapp.R;
 import com.ilyas.androidshoppingapp.model.ShippingInfo;
 
@@ -45,10 +51,10 @@ public class ShippingInfoActivity extends AppCompatActivity {
         fuser = mAuth.getCurrentUser();
 
         totalAmount = getIntent().getStringExtra("Total Price");
-        pname = getIntent().getStringExtra("pname");
+        /*pname = getIntent().getStringExtra("pname");
         pprice = getIntent().getStringExtra("pprice");
         pquantity = getIntent().getStringExtra("quantity");
-        pimage = getIntent().getStringExtra("image");
+        pimage = getIntent().getStringExtra("image");*/
 
         edtSName = (EditText) findViewById(R.id.shipping_name);
         edtSPhone = (EditText) findViewById(R.id.shipping_phone);
@@ -98,7 +104,7 @@ public class ShippingInfoActivity extends AppCompatActivity {
                 .child("orders")
                 .child(fuser.getUid()).child(key);
 
-        HashMap<String, Object> ordersMap = new HashMap<>();
+        final HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("key",key);
         ordersMap.put("total amount",totalAmount);
         ordersMap.put("name",edtSName.getText().toString());
@@ -116,8 +122,88 @@ public class ShippingInfoActivity extends AppCompatActivity {
                 System.out.println("Done");
                 if(task.isSuccessful())
                 {
+                    Snackbar.make(findViewById(R.id.ConstraintLayout), "Success Block", Snackbar.LENGTH_SHORT).show();
+                    //Empty Cart and Add Products to Ordered Product Node of Orders
+                    final DatabaseReference cartProdRef = FirebaseDatabase.getInstance().getReference()
+                            .child("Cart Item")
+                            .child("User view").child(fuser.getUid());
+                    final DatabaseReference ordrProdRef = FirebaseDatabase.getInstance().getReference()
+                            .child("orders").child(fuser.getUid()).child(key);
+                            //.child("ordered Product");
+
+
+
+
+
+//                    cartProdRef.addChildEventListener(childEventListener);
+
+
+
+                        /*cartProdRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+//                                    Toast.makeText(ShippingInfoActivity.this, "Inside Remove ", Toast.LENGTH_SHORT).show();
+                                    ValueEventListener valueEventListener = new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            ordrProdRef.setValue(dataSnapshot.getValue())
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful())
+                                                            {
+                                                                Toast.makeText(ShippingInfoActivity.this, "Data Moved", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    };
+                                    cartProdRef.addValueEventListener(valueEventListener);
+                                }
+//                                cartProdRef.addChildEventListener(childEventListener);
+                            }
+                        });*/
+
+                    //Value Event Listener Try
+
+                    /*  ValueEventListener valueEventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ordrProdRef.setValue(dataSnapshot.getValue())
+                                  .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(ShippingInfoActivity.this, "Order Placed Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ShippingInfoActivity.this, ConfirmationActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(ShippingInfoActivity.this, "Error in Placing Order", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    };
+                    cartProdRef.addListenerForSingleValueEvent(valueEventListener);*/
+
+
                     //Empty Cart and confirm Order
-                    FirebaseDatabase.getInstance().getReference().child("Cart Item")
+
+                    /*FirebaseDatabase.getInstance().getReference().child("Cart Item")
                             .child("User view").child(fuser.getUid())
                             .removeValue()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -131,11 +217,13 @@ public class ShippingInfoActivity extends AppCompatActivity {
                                         finish();
                                     }
                                 }
-                            });
+                            });*/
                 }
             }
         });
 
+
+        //trying to move Product
 
         /*confirmOrderRef.child("ordered product").updateChildren(orderProdMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -164,4 +252,6 @@ public class ShippingInfoActivity extends AppCompatActivity {
                 });*/
 
     }
+
+
 }

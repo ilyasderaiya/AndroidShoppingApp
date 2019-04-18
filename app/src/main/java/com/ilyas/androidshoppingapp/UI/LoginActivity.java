@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
 
     }
 
-    public boolean isInternetAvailable(Context context) {
+   /* public boolean isInternetAvailable(Context context) {
         try {
             final InetAddress add = InetAddress.getByName("www.google.com");
             return !add.equals("");
@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
             //Error
         }
         return false;
-    }
+    }*/
 
 
     private void signIn() {
@@ -225,7 +225,7 @@ public class LoginActivity extends AppCompatActivity implements OnConnectionFail
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                            Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent mIntent = new Intent(getApplicationContext(), HomeActivity.class);
                             startActivity(mIntent);
                             finish();
                         } else {

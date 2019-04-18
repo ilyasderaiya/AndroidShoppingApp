@@ -128,7 +128,7 @@ public class AdminActivity extends AppCompatActivity {
 
         randomId = saveCurrentDate + saveCurrentTime;
 
-        final StorageReference filePath = prodImageRef.child(prodName + ".jpg");
+        final StorageReference filePath = prodImageRef.child(prodName.getText().toString() + ".jpg");
 
         final UploadTask uploadTask = filePath.putFile(imageUri);
 
@@ -161,7 +161,7 @@ public class AdminActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             downImageUrl = task.getResult().toString();
 
-                            Toast.makeText(AdminActivity.this, "Product Image saved to Storage", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminActivity.this, "Product Image saved to Database", Toast.LENGTH_SHORT).show();
 
                             saveProductInfoToDatabase();
                         }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_bokeh"
     tools:context=".UI.ProductInfoAvtivity">
 
     <ImageView
@@ -75,6 +76,6 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_add_to_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:textSize="14sp" />
+        app:textSize="10sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
