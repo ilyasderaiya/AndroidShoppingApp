@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ilyas.androidshoppingapp.R;
 import com.ilyas.androidshoppingapp.model.ShippingInfo;
@@ -126,13 +127,55 @@ public class ShippingInfoActivity extends AppCompatActivity {
                     //Empty Cart and Add Products to Ordered Product Node of Orders
                     final DatabaseReference cartProdRef = FirebaseDatabase.getInstance().getReference()
                             .child("Cart Item")
-                            .child("User view").child(fuser.getUid());
+                            .child("User view").child(fuser.getUid()).child("products");
                     final DatabaseReference ordrProdRef = FirebaseDatabase.getInstance().getReference()
-                            .child("orders").child(fuser.getUid()).child(key);
-                            //.child("ordered Product");
+                            .child("orders").child(fuser.getUid()).child(key)
+                            .child("ordered Product");
 
 
+                    cartProdRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ordrProdRef.setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(ShippingInfoActivity.this, "Do it", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    /*ValueEventListener mProductListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot child : dataSnapshot.getChildren()){
+                                ordrProdRef.setValue(child.getValue())
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Toast.makeText(ShippingInfoActivity.this, "Finally Done it", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    };
+                    cartProdRef.addValueEventListener(mProductListener);*/
+
+
+//                    FirebaseDatabase.getInstance().getReference().child("Cart Item").child("User view")
+//                            .child(fuser.getUid()).child("products");
 
 
 //                    cartProdRef.addChildEventListener(childEventListener);
