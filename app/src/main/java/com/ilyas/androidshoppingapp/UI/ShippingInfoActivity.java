@@ -114,7 +114,7 @@ public class ShippingInfoActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 System.out.println("Done");
-                /*if(task.isSuccessful())
+                if(task.isSuccessful())
                 {
                     //Empty Cart and confirm Order
                     FirebaseDatabase.getInstance().getReference().child("Cart Item")
@@ -132,18 +132,12 @@ public class ShippingInfoActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                }*/
+                }
             }
         });
 
-        HashMap<String, Object> orderProdMap = new HashMap<>();
-        orderProdMap.put("pname", pname);
-        orderProdMap.put("pprice", pprice);
-        orderProdMap.put("pquantity", pquantity);
-        orderProdMap.put("pimage", pimage);
 
-
-        confirmOrderRef.child("ordered product").updateChildren(orderProdMap)
+        /*confirmOrderRef.child("ordered product").updateChildren(orderProdMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -167,7 +161,7 @@ public class ShippingInfoActivity extends AppCompatActivity {
                                     });
                         }
                     }
-                });
+                });*/
 
     }
 }
