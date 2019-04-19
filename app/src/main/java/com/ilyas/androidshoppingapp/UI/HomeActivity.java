@@ -1,6 +1,7 @@
 package com.ilyas.androidshoppingapp.UI;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +10,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -207,6 +211,21 @@ public class HomeActivity extends AppCompatActivity
             finish();
         } else if(id==R.id.nav_orders){
             startActivity(new Intent(HomeActivity.this,OrdersActivity.class));
+        }else if(id==R.id.nav_about_us){
+            String msg="email:\n\temilabrahamz@gmail.com\n\tilyasderaiya@gmail.com";
+            final SpannableString s = new SpannableString(msg);
+            Linkify.addLinks(s, Linkify.EMAIL_ADDRESSES);
+
+            final AlertDialog d = new AlertDialog.Builder(HomeActivity.this)
+                    .setPositiveButton(android.R.string.ok, null)
+                    //.setIcon(R.drawable.icon)
+                    .setMessage( s )
+                    .create();
+
+            d.show();
+
+            // Make the textview clickable. Must be called after show()
+            ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         }
 
 
