@@ -65,7 +65,9 @@ public class CartActivity extends AppCompatActivity {
         btnShippingInfo = (Button)findViewById(R.id.btn_shipping_info_cart);
         totalPrice = (TextView)findViewById(R.id.total_price_cart);
 
-       FirebaseDatabase.getInstance().getReference().child("Cart Item").addValueEventListener(new ValueEventListener() {
+       FirebaseDatabase.getInstance().getReference().child("Cart Item")
+               .child("User view").child(fuser.getUid())
+               .addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                if(dataSnapshot.exists())

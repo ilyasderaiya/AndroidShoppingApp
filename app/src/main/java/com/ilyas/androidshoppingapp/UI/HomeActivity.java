@@ -200,9 +200,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_cart) {
             // Handle the camera action
             startActivity(new Intent(HomeActivity.this, CartActivity.class));
-        } else if (id == R.id.nav_orders) {
-
-        } else if (id == R.id.nav_profile) {
+        }  else if (id == R.id.nav_profile) {
             startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
 
         } else if (id == R.id.nav_logout) {

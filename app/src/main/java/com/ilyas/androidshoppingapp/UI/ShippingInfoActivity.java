@@ -107,7 +107,7 @@ public class ShippingInfoActivity extends AppCompatActivity {
 
         final HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("key",key);
-        ordersMap.put("total amount",totalAmount);
+        ordersMap.put("total_amount",totalAmount);
         ordersMap.put("name",edtSName.getText().toString());
         ordersMap.put("phone", edtSPhone.getText().toString());
         ordersMap.put("address", edtSAddress.getText().toString());
@@ -130,7 +130,7 @@ public class ShippingInfoActivity extends AppCompatActivity {
                             .child("User view").child(fuser.getUid()).child("products");
                     final DatabaseReference ordrProdRef = FirebaseDatabase.getInstance().getReference()
                             .child("orders").child(fuser.getUid()).child(key)
-                            .child("ordered Product");
+                            .child("ordered_product");
 
 
                     cartProdRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -139,7 +139,23 @@ public class ShippingInfoActivity extends AppCompatActivity {
                             ordrProdRef.setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(ShippingInfoActivity.this, "Do it", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(ShippingInfoActivity.this, "Do it", Toast.LENGTH_SHORT).show();
+                                    if(task.isSuccessful())
+                                    {
+                                        cartProdRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(ShippingInfoActivity.this, "Order Placed Successfully", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(ShippingInfoActivity.this, ConfirmationActivity.class);
+                                                intent.putExtra("sname", edtSName.getText().toString());
+                                                intent.putExtra("sphone", edtSPhone.getText().toString());
+                                                intent.putExtra("saddress", edtSAddress.getText().toString());
+                                                intent.putExtra("scity", edtSCity.getText().toString());
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        });
+                                    }
                                 }
                             });
                         }
