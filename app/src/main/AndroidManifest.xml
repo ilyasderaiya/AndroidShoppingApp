@@ -18,6 +18,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:theme">
+        <activity android:name=".UI.OrdersActivity"></activity>
         <activity android:name=".UI.AdminShowRemoveActivity" />
         <activity android:name=".UI.AdminUiActivity" />
         <activity android:name=".UI.ConfirmationActivity" />

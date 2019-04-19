@@ -205,7 +205,10 @@ public class HomeActivity extends AppCompatActivity
             mAuth.signOut();
             startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             finish();
+        } else if(id==R.id.nav_orders){
+            startActivity(new Intent(HomeActivity.this,OrdersActivity.class));
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
