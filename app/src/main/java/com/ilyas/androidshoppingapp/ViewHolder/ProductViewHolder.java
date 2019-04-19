@@ -19,8 +19,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        pImageView = (ImageView)itemView.findViewById(R.id.prodImage);
-        txtPName = (TextView) itemView.findViewById(R.id.txtProdName);
+        pImageView = (ImageView)itemView.findViewById(R.id.prod_image_ordr_details);
+        txtPName = (TextView) itemView.findViewById(R.id.txt_prod_name_ordr_details);
         txtPPrice = (TextView) itemView.findViewById(R.id.txtProdPrice);
     }
 
@@ -30,6 +30,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
     @Override
     public void onClick(View v) {
-        listner.onClick(v,getAdapterPosition(),false);
+        listner.onClick(v,getAdapterPosition(),false)   ;
     }
 }

@@ -11,14 +11,15 @@ import com.ilyas.androidshoppingapp.R;
 
 
 public class OrdersViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView txtOrder;
+    public TextView txtOrderPlaced, txtTotal;
     public TextView txtOrderNo;
     private ItemClickListner itemClickListner;
 
     public OrdersViewHolder(@NonNull View itemView) {
         super(itemView);
-        txtOrder=itemView.findViewById(R.id.txtOrder);
+        txtOrderPlaced=itemView.findViewById(R.id.txtOrderPlaced);
         txtOrderNo=itemView.findViewById(R.id.txtOrderNo);
+        txtTotal=itemView.findViewById(R.id.txtTotal);
     }
 
     @Override
