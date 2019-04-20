@@ -209,7 +209,7 @@ public class HomeActivity extends AppCompatActivity
             finish();
         } else if(id==R.id.nav_orders){
             startActivity(new Intent(HomeActivity.this,OrdersActivity.class));
-        }else if(id==R.id.nav_about_us){
+        }else if(id==R.id.nav_contact_us){
             String msg="email:\n\temilabrahamz@gmail.com\n\tilyasderaiya@gmail.com";
             final SpannableString s = new SpannableString(msg);
             Linkify.addLinks(s, Linkify.EMAIL_ADDRESSES);
