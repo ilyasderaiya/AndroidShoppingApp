@@ -2,6 +2,7 @@ package com.ilyas.androidshoppingapp.UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ilyas.androidshoppingapp.R;
@@ -19,6 +24,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Handler handler;
 
+    ImageView imgLogo;
+    TextView txtLogo;
+    ConstraintLayout splashCL;
+    Animation leftRight;
+    Animation rightLeft;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +38,15 @@ public class SplashScreenActivity extends AppCompatActivity {
             buildDialog(SplashScreenActivity.this).show();
         else {
             setContentView(R.layout.activity_splash_screen);
+            imgLogo=findViewById(R.id.imageView);
+            splashCL=(ConstraintLayout) findViewById(R.id.splashCL);
+            txtLogo=findViewById(R.id.textView);
+            leftRight= AnimationUtils.loadAnimation(this,R.anim.fade_in_left_right);
+            rightLeft= AnimationUtils.loadAnimation(this,R.anim.fade_in_right_left);
+            leftRight.setDuration(1000);
+            rightLeft.setDuration(1000);
+            imgLogo.startAnimation(leftRight);
+            txtLogo.startAnimation(rightLeft);
             handler = new Handler();
             firebaseAuth = FirebaseAuth.getInstance();
             handler.postDelayed(new Runnable() {

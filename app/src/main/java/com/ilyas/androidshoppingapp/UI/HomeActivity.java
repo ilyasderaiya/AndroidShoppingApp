@@ -1,6 +1,7 @@
 package com.ilyas.androidshoppingapp.UI;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.ilyas.androidshoppingapp.model.Products;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -122,7 +124,7 @@ public class HomeActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Products> options =
+        final FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                 .setQuery(productsRef, Products.class)
                 .build();
@@ -131,7 +133,7 @@ public class HomeActivity extends AppCompatActivity
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @SuppressLint("SetTextI18n")
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Products products) {
+                    protected void onBindViewHolder(@NonNull final ProductViewHolder productViewHolder, int i, @NonNull final Products products) {
                         productViewHolder.txtPName.setText(products.getProductName());
                         productViewHolder.txtPPrice.setText("$" + products.getProductPrice());
                         Picasso.get().load(products.getImageUrl()).into(productViewHolder.pImageView);
@@ -140,8 +142,10 @@ public class HomeActivity extends AppCompatActivity
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(HomeActivity.this,ProductInfoAvtivity.class);
+                                ActivityOptionsCompat opt= ActivityOptionsCompat.makeSceneTransitionAnimation(HomeActivity.this,v.findViewById(R.id.prod_image_ordr_details),"product");
                                 intent.putExtra("key", products.getKey());
-                                startActivity(intent);
+                                //startActivity(intent);
+                                startActivity(intent,opt.toBundle());
                             }
                         });
                     }

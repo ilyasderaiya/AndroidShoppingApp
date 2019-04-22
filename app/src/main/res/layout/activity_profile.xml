@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_bokeh"
+    android:background="@drawable/bckground"
+    android:backgroundTint="#B3000000"
+    android:backgroundTintMode="src_atop"
     tools:context=".UI.ProfileActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -71,7 +73,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Change Profile"
-        android:textColor="@android:color/black"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +87,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/stroke"
+        android:background="@drawable/stroke_white"
+        android:textColorHint="#E0E0E0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_profile">
@@ -97,7 +100,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:hint="Phone Number"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#F1F1F1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +112,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/stroke"
+        android:background="@drawable/stroke_white"
+        android:textColorHint="#e0e0e0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout9">
@@ -119,7 +125,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:hint="Full Name"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#F1F1F1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -128,7 +136,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/stroke"
+        android:background="@drawable/stroke_white"
+        android:textColorHint="#e0e0e0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout10">
@@ -139,7 +148,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:hint="Address" />
+            android:hint="Address"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#F1F1F1" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

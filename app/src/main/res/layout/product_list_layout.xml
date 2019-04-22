@@ -14,6 +14,7 @@
 
         <ImageView
             android:id="@+id/prod_image_ordr_details"
+            android:transitionName="product"
             android:layout_width="113dp"
             android:layout_height="104dp"
             android:layout_margin="8dp"

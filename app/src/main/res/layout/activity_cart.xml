@@ -5,7 +5,9 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_bokeh"
+    android:background="@drawable/bckground"
+    android:backgroundTint="#99000000"
+    android:backgroundTintMode="src_atop"
     tools:context=".UI.CartActivity">
 
     <Button
@@ -16,7 +18,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/oval"
+        android:backgroundTint="#2f2f2f"
         android:text="Shipping Info"
+        android:textColor="#FFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,9 +34,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/stroke"
+        android:background="@drawable/stroke_white"
         android:text="Total Price: "
         android:textAlignment="center"
+        android:textColor="#FFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_shipping_info_cart"
         app:layout_constraintEnd_toEndOf="parent"

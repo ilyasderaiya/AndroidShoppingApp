@@ -72,6 +72,12 @@ public class ProductInfoAvtivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        supportFinishAfterTransition();
+    }
+
     private void addToCart() {
         String saveCurrDate, saveCurrTime;
         Calendar callForDate = Calendar.getInstance();
